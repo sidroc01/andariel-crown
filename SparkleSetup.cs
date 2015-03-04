@@ -134,6 +134,44 @@ namespace SparkleShare {
                 else
                     MakeFirstResponder ((NSResponder) EmailTextField);
             }
+            
+            if (type == PageType.Invite) {
+                Header      = "You’ve received an invite!";
+                Description = "Do you want to add this project to SparkleShare?";
+
+                AddressLabel       = new SparkleLabel ("Address:", NSTextAlignment.Right);
+                AddressLabel.Frame = new RectangleF (165, Frame.Height - 238, 160, 17);
+                AddressLabel.Font  = NSFont.FromFontName (SparkleUI.FontName + " Bold", NSFont.SystemFontSize);
+     
+                AddressTextField = new SparkleLabel (Controller.PendingInvite.Address, NSTextAlignment.Left) {
+                    Frame = new RectangleF (330, Frame.Height - 240, 260, 17)
+                };
+
+                PathLabel       = new SparkleLabel ("Remote Path:", NSTextAlignment.Right);
+                PathLabel.Frame = new RectangleF (165, Frame.Height - 262, 160, 17);
+                PathLabel.Font  = NSFont.FromFontName (SparkleUI.FontName + " Bold", NSFont.SystemFontSize);
+
+
+                PathTextField = new SparkleLabel (Controller.PendingInvite.RemotePath, NSTextAlignment.Left) {
+                    Frame = new RectangleF (330, Frame.Height - 264, 260, 17)
+                };
+
+                CancelButton = new NSButton () { Title = "Cancel" };
+                AddButton = new NSButton () { Title = "Add" };
+
+
+                CancelButton.Activated += delegate { Controller.PageCancelled (); };
+                AddButton.Activated += delegate { Controller.InvitePageCompleted (); };
+
+
+                ContentView.AddSubview (AddressLabel);
+                ContentView.AddSubview (PathLabel);
+                ContentView.AddSubview (AddressTextField);
+                ContentView.AddSubview (PathTextField);
+
+                Buttons.Add (AddButton);
+                Buttons.Add (CancelButton);
+            }            
 
             if (type == PageType.Invite) {
                 Header      = "You’ve received an invite!";
