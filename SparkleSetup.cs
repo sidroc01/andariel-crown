@@ -870,6 +870,39 @@ namespace SparkleShare {
                 return new NSImage (path) { Size = new SizeF (24, 24) };
             }
         }
+        
+        [Export("tableView:objectValueForTableColumn:row:")]
+        public NSObject objectValueForTableColumn (NSTableView table_view,
+            NSTableColumn table_column, int row_index)
+        {
+            if (table_column.HeaderToolTip.Equals ("Description")) {
+                if (table_view.SelectedRow == row_index &&
+                    Program.UI.Setup.IsKeyWindow &&
+                    Program.UI.Setup.FirstResponder == table_view) {
+
+                    return SelectedCells [row_index];
+
+                } else {
+                    return Cells [row_index];
+                }
+
+            } else {
+                SparklePlugin plugin = (SparklePlugin) Items [row_index];
+                string path = plugin.ImagePath;
+
+                if (backing_scale_factor >= 2) {
+                    string hi_path = String.Format ("{0}@{1}x{2}",
+                        Path.Combine (Path.GetDirectoryName (path), Path.GetFileNameWithoutExtension (path)),
+                        backing_scale_factor, Path.GetExtension (path)
+                    );
+
+                    if (File.Exists (hi_path))
+                        path = hi_path;
+                }
+
+                return new NSImage (path) { Size = new SizeF (24, 24) };
+            }
+        }        
     }
 
 
