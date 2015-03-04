@@ -30,9 +30,6 @@ namespace SparkleShare {
 
     public class SparkleSetup : SparkleSetupWindow {
 
-        private NSButton ContinueButton, AddButton, CopyButton, TryAgainButton, CancelButton, 
-            SkipTutorialButton, FinishButton, ShowFilesButton;
-
         private NSTextField FullNameTextField, FullNameLabel, EmailLabel, EmailTextField,
         LinkCodeTextField, AddressTextField, AddressLabel, AddressHelpLabel, PathTextField, PathLabel,
         PathHelpLabel, ProgressLabel, PasswordTextField, VisiblePasswordTextField, PasswordLabel, WarningTextField;
