@@ -855,19 +855,4 @@ namespace SparkleShare {
             SelectionChanged ();
         }
     }
-
-
-    public class SparkleLabel : NSTextField {
-
-        public SparkleLabel (string label, NSTextAlignment alignment)
-        {
-            if (!string.IsNullOrEmpty (label))
-                StringValue = label;
-
-            Alignment       = alignment;
-            BackgroundColor = NSColor.WindowBackground;
-            Bordered        = false;
-            Editable        = false;
-        }
-    }
 }
