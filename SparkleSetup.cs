@@ -30,8 +30,6 @@ namespace SparkleShare {
 
     public class SparkleSetup : SparkleSetupWindow {
 
-        public SparkleSetupController Controller = new SparkleSetupController ();
-
         private NSButton ContinueButton, AddButton, CopyButton, TryAgainButton, CancelButton, 
             SkipTutorialButton, FinishButton, ShowFilesButton;
 
